@@ -1,5 +1,6 @@
 {
   "name": "projeto_14_mywallet_back",
+  "type": "module",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
