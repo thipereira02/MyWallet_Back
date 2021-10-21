@@ -26,3 +26,13 @@ export async function newSession(userId, token){
         VALUES ($1, $2)
     `,[userId, token]);
 }
+
+export async function userData(token) {
+    const userData = await connection.query(`
+        SELECT token, name FROM sessions
+        JOIN users
+        ON sessions."userId" = users.id
+        WHERE sessions.token = $1
+    `,[token]);
+    return userData.rows[0]
+}

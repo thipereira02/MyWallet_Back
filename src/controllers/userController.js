@@ -38,7 +38,9 @@ export async function signIn(req, res) {
 
         await service.newSession(userId, token);
 
-        res.send(token).status(200);
+        const data = await service.userData(token);
+
+        res.send(data).status(200);
     } catch(e){
         console.log(e);
         res.sendStatus(500);

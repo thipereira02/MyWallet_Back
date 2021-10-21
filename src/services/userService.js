@@ -40,3 +40,8 @@ export async function newSession(userId, token){
     const newSession = await repository.newSession(userId, token);
     return true
 }
+
+export async function userData(token) {
+    const userData = await repository.userData(token);
+    return userData;
+}
