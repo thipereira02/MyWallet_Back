@@ -5,8 +5,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-import * as controller from "./controllers/controller.js";
+import * as userController from "./controllers/userController.js";
 
-app.post("/signup", controller.signup);
+app.post("/signup", userController.signUp);
+app.post("/signin", userController.signIn);
 
 export default app;
