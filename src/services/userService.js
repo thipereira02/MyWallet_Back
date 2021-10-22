@@ -17,6 +17,11 @@ export async function userExists(email){
     return [userExists]
 }
 
+export async function createHash(password) {
+    const hash = bcrypt.hashSync(password, 12);
+    return hash;
+}
+
 export async function newUser(name, email, hash){
     const newUser = await userRepository.newUser(name, email, hash);
     return true
