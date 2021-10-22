@@ -1,18 +1,18 @@
-import * as service from "../services/userService.js";
+import * as userService from "../services/userService.js";
 
 export async function signUp(req, res){
     try{
         const { name, email, password, confirmPassword } = req.body;
         
-        const bodyIsValid = await service.signUpDataIsValid(name, email, password, confirmPassword);
+        const bodyIsValid = await userService.signUpDataIsValid(name, email, password, confirmPassword);
         if (!bodyIsValid) return res.sendStatus(400);
         
-        const userExists = await service.userExists(email);
+        const userExists = await userService.userExists(email);
         if (userExists!==false) return res.sendStatus(409);
         
 		const hash = bcrypt.hashSync(password, 12);
 
-        await service.newUser(name, email, hash);
+        await userService.newUser(name, email, hash);
 		
         return res.sendStatus(201);
     } catch(e){
