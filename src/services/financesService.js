@@ -17,3 +17,8 @@ export async function getUserId(token) {
 export async function newFinance(userId, value, description, eventType) {
     const newFinance = await financesRepository.newFinance(userId, value, description, eventType);
 }
+
+export async function getUserFinances(userId) {
+    const getUserFinances = await financesRepository.getUserFinances(userId);
+    return getUserFinances;
+}

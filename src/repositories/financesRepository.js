@@ -17,3 +17,12 @@ export async function newFinance(userId, value, description, eventType) {
         VALUES ($1, $2, $3, $4, NOW())
     `,[userId, value, description, eventType]);
 }
+
+export async function getUserFinances(userId) {
+    const result = await connection.query(`
+        SELECT *
+        FROM finances
+        WHERE "userId"=$1
+    `,[userId]);
+    return result.rows
+}

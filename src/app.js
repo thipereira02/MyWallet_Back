@@ -10,6 +10,7 @@ import * as financesController from "./controllers/financesController.js";
 
 app.post("/signup", userController.signUp);
 app.post("/signin", userController.signIn);
-app.post("/finances", financesController.addFinance)
+app.post("/finances", financesController.addFinance);
+app.get("/finances", financesController.getFinances);
 
 export default app;

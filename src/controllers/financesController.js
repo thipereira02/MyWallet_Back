@@ -18,3 +18,22 @@ export async function addFinance(req, res) {
         res.sendStatus(500);
     }
 }
+
+
+export async function getFinances(req, res) {
+    try {
+        const authorization = req.header("Authorization");
+        const token = authorization?.replace("Bearer ", "");
+
+        const userId = await financesService.getUserId(token);
+        if (!userId) return res.sendStatus(400);
+
+        const userFinances = await financesService.getUserFinances(userId);
+        if(!userFinances) return res.sendStatus(404);
+        
+        return res.send(userFinances);
+    } catch(e){
+        console.log(e);
+        res.sendStatus(500);
+    }
+}
