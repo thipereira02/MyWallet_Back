@@ -6,6 +6,8 @@ export async function addFinance(req, res) {
         const authorization = req.header("Authorization");
         const token = authorization?.replace("Bearer ", "");
 
+        if (!token) return res.sendStatus(401);
+
         const bodyIsValid = await financesService.dataIsValid(value, description);
         if (!bodyIsValid) return res.sendStatus(400);
 
@@ -25,6 +27,8 @@ export async function getFinances(req, res) {
         const authorization = req.header("Authorization");
         const token = authorization?.replace("Bearer ", "");
 
+        if (!token) return res.sendStatus(401);
+
         const userId = await financesService.getUserId(token);
         if (!userId) return res.sendStatus(400);
 
@@ -42,6 +46,8 @@ export async function logout(req, res) {
     try {
         const authorization = req.header("Authorization");
         const token = authorization?.replace("Bearer ", "");
+
+        if (!token) return res.sendStatus(401);
 
         await financesService.finishSession(token);
 
