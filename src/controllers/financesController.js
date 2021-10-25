@@ -37,3 +37,17 @@ export async function getFinances(req, res) {
         res.sendStatus(500);
     }
 }
+
+export async function logout(req, res) {
+    try {
+        const authorization = req.header("Authorization");
+        const token = authorization?.replace("Bearer ", "");
+
+        await financesService.finishSession(token);
+
+        return res.sendStatus(200);
+    } catch(e){
+        console.log(e);
+        res.sendStatus(500);
+    }
+}

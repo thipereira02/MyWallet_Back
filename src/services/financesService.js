@@ -22,3 +22,8 @@ export async function getUserFinances(userId) {
     const getUserFinances = await financesRepository.getUserFinances(userId);
     return getUserFinances;
 }
+
+export async function finishSession(token) {
+    const finishSession = await financesRepository.finishSession(token);
+    console.log(finishSession)
+}

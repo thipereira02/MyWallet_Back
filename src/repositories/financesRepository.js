@@ -26,3 +26,10 @@ export async function getUserFinances(userId) {
     `,[userId]);
     return result.rows
 }
+
+export async function finishSession(token) {
+    await connection.query(`
+        DELETE FROM sessions
+        WHERE token=$1
+    `,[token]);
+}
