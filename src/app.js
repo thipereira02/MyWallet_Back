@@ -12,6 +12,6 @@ app.post("/signup", userController.signUp);
 app.post("/signin", userController.signIn);
 app.post("/finances", financesController.addFinance);
 app.get("/finances", financesController.getFinances);
-app.delete("/finances", financesController.logout);
+app.post("/logout", userController.logout);
 
 export default app;

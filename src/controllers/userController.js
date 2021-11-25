@@ -46,3 +46,19 @@ export async function signIn(req, res) {
         res.sendStatus(500);
     }
 }
+
+export async function logout(req, res) {
+    try {
+        const authorization = req.header("Authorization");
+        const token = authorization?.replace("Bearer ", "");
+
+        if (!token) return res.sendStatus(401);
+
+        await userService.finishSession(token);
+
+        return res.sendStatus(200);
+    } catch(e){
+        console.log(e);
+        res.sendStatus(500);
+    }
+}

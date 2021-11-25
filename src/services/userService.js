@@ -50,3 +50,7 @@ export async function userData(token) {
     const userData = await userRepository.userData(token);
     return userData;
 }
+
+export async function finishSession(token) {
+    const finishSession = await userRepository.finishSession(token);
+}

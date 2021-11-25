@@ -36,3 +36,10 @@ export async function userData(token) {
     `,[token]);
     return userData.rows[0]
 }
+
+export async function finishSession(token) {
+    await connection.query(`
+        DELETE FROM sessions
+        WHERE token=$1
+    `,[token]);
+}

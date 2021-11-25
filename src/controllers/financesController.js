@@ -42,18 +42,3 @@ export async function getFinances(req, res) {
     }
 }
 
-export async function logout(req, res) {
-    try {
-        const authorization = req.header("Authorization");
-        const token = authorization?.replace("Bearer ", "");
-
-        if (!token) return res.sendStatus(401);
-
-        await financesService.finishSession(token);
-
-        return res.sendStatus(200);
-    } catch(e){
-        console.log(e);
-        res.sendStatus(500);
-    }
-}

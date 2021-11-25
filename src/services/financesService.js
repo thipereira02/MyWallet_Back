@@ -23,7 +23,3 @@ export async function getUserFinances(userId) {
     return getUserFinances;
 }
 
-export async function finishSession(token) {
-    const finishSession = await financesRepository.finishSession(token);
-    console.log(finishSession)
-}
